@@ -55,7 +55,6 @@ function displayResponse(json) {
     el =  document.getElementById("content");
     el.innerHTML = "";
 
-    console.log(f.length);
     if(f.length > 0) {
 	    element = document.createElement("ul");
 	    for (var i = 0; i < f.length; i++) {
@@ -79,6 +78,8 @@ function displayError() {
     el.innerHTML = "";
 
     txtNode = document.createTextNode("An error has occured.");
-    element = document.createElement("p").appendChild(txtNode);
+    element = document.createElement("p");
+    element.setAttribute("class", "error");
+    element.appendChild(txtNode);
     el.appendChild(element);
 };
