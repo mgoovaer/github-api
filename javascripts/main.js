@@ -50,8 +50,7 @@ function displayProgressIndicator() {
 
 // Populate the content div with the GitHub Repositories
 function displayResponse(json) {
-	f = json;
-    //Build the new child andd append it to the father
+    f = json;
     el =  document.getElementById("content");
     el.innerHTML = "";
 
@@ -59,11 +58,20 @@ function displayResponse(json) {
 	    element = document.createElement("ul");
 	    for (var i = 0; i < f.length; i++) {
 	    	li = document.createElement("li");
+
+	    	// Create name of Repo with URL link
 	        a = document.createElement("a");
 	        a.appendChild(document.createTextNode(f[i].name));
 	        a.href = f[i].html_url;
 	        li.appendChild(a);
 	        element.appendChild(li);
+
+	        // Add description if existent, otherwise empty p for spacing
+			p = document.createElement("p");
+	        if(f[i].description != null && f[i].description != "") {
+	        	p.appendChild(document.createTextNode(f[i].description));
+	        }
+	        element.appendChild(p);
 	    }
     } else {
     	txtNode = document.createTextNode("No repositories found for entered username.");
